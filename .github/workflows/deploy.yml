@@ -22,7 +22,7 @@ jobs:
 
       - name: Deploy to DigitalOcean
         run: |
-          ssh -T root@${{ secrets.SSH_HOST }}
+          ssh -T root@${{ secrets.DO_SERVER_IP }}
           cd app
 
           git pull origin main
