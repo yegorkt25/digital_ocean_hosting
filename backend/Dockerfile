@@ -20,7 +20,7 @@ COPY . /var/www/html/
 RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 
 # Install PHP dependencies
-RUN composer install
+RUN composer install --no-dev --optimize-autoloader
 
 # Set the ServerName to prevent Apache warnings
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
