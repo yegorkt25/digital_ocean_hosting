@@ -1,0 +1,13 @@
+# Enable mod_rewrite
+RewriteEngine On
+
+# If the request is for an actual file or directory, don't rewrite
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Route all requests to index.php (for handling in PHP)
+RewriteRule ^(.*)$ /index.php [QSA,L]
+
+# CORS headers to allow access from frontend (React dev server)
+Header set Access-Control-Allow-Origin "http://localhost:3000"
+Header set Access-Control-Allow-Headers "Content-Type, Authorization"

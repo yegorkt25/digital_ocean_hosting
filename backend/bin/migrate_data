@@ -1,0 +1,125 @@
+<?php
+
+use App\DBConn;
+use App\Entities\Product;
+use App\Entities\Category;
+use App\Entities\Currency;
+use App\Entities\ProductPrice;
+use App\Entities\AttributeItem;
+use App\Entities\ProductGallery;
+use App\Entities\ProductAttribute;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$jsonString = file_get_contents(__DIR__ . '/data.json');
+$data = json_decode($jsonString, true)['data'];
+$entityManager = DBConn::getConn();
+
+function object_in_array($object, $array)
+{
+    foreach ($array as $item) {
+        if (is_object($item) && get_object_vars($item) == get_object_vars($object)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+$categories = [];
+$products = [];
+$gallery = [];
+$currencies = [];
+$prices = [];
+$attributes = [];
+$attributeItems = [];
+
+foreach ($data['categories'] as $category) {
+    $tempCategory = new Category;
+    $tempCategory->id = count($categories);
+    $tempCategory->name = $category['name'];
+    $categories[$tempCategory->id] = $tempCategory;
+
+
+    $entityManager->persist($tempCategory);
+}
+
+foreach ($data['products'] as $tempAttribute) {
+    $tempProduct = new Product;
+    $tempProduct->id = count($products);
+    $tempProduct->name = $tempAttribute['name'];
+    $tempProduct->isInStock = $tempAttribute['inStock'];
+    $tempProduct->description = $tempAttribute['description'];
+    $tempProduct->brand = $tempAttribute['brand'];
+
+    $addedCategory = array_filter($categories, function ($category) use ($tempAttribute) {
+        return $category->name === $tempAttribute['category'];
+    });
+    $tempProduct->category = array_shift($addedCategory);
+
+    $products[] = $tempProduct;
+
+    $entityManager->persist($tempProduct);
+
+    foreach ($tempAttribute['gallery'] as $photo) {
+        $tempPhoto = new ProductGallery;
+        $tempPhoto->id = count($gallery);
+        $tempPhoto->imageUrl = $photo;
+        $tempPhoto->product = $tempProduct;
+
+        $gallery[] = $tempPhoto;
+        $entityManager->persist($tempPhoto);
+    }
+
+    foreach ($tempAttribute['prices'] as $price) {
+        $tempCurrency = new Currency;
+        $tempCurrency->id = count($currencies);
+        $tempCurrency->label = $price['currency']['label'];
+        $tempCurrency->symbol = $price['currency']['symbol'];
+
+        if (!object_in_array($tempCurrency, $currencies)) {
+            $currencies[] = $tempCurrency;
+            $entityManager->persist($tempCurrency);
+        }
+
+        $tempPrice = new ProductPrice;
+        $tempPrice->id = count($prices);
+        $tempPrice->price = $price['amount'];
+
+        $tempPrice->currency = $currencies[array_search($tempCurrency->symbol, array_column($currencies, 'symbol'))];
+        $tempPrice->product = $tempProduct;
+
+        $prices[] = $tempPrice;
+        $entityManager->persist($tempPrice);
+    }
+
+    foreach ($tempAttribute['attributes'] as $attribute) {
+        $tempAttribute = new ProductAttribute;
+        $tempAttribute->id = count($attributes);
+        $tempAttribute->product = $tempProduct;
+        $tempAttribute->name = $attribute['name'];
+        $tempAttribute->type = $attribute['type'];
+
+
+        $attributes[] = $tempAttribute;
+        $entityManager->persist($tempAttribute);
+
+
+        foreach ($attribute['items'] as $item) {
+            $tempItem = new AttributeItem;
+            $tempItem->id = count($attributeItems);
+            $tempItem->displayValue = $item['displayValue'];
+            $tempItem->value = $item['value'];
+
+            $addedAttribute = array_filter($attributes, function ($attribute) use ($tempAttribute) {
+                return $attribute->id === $tempAttribute->id;
+            });
+            $tempItem->attribute = array_shift($addedAttribute);
+
+            $attributeItems[] = $tempItem;
+            $entityManager->persist($tempItem);
+
+        }
+    }
+}
+
+$entityManager->flush();
