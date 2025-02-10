@@ -45,7 +45,10 @@ export default class Cart extends React.Component<ICartProps> {
 
     return (
       <>
-        <ShadowOverlay onClick={() => switchCartOverlay()} />
+        <ShadowOverlay
+          onClick={() => switchCartOverlay()}
+          data-testid="cart-overlay"
+        />
         <CartContainer>
           {!isCartEmpty && (
             <CartInfo data-testid="cart-item-amount">
@@ -73,7 +76,10 @@ export default class Cart extends React.Component<ICartProps> {
             <PriceSpan>
               $
               {selectedProducts
-                .reduce((sum, item) => sum + item.prices[0].price * item.quantity, 0)
+                .reduce(
+                  (sum, item) => sum + item.prices[0].price * item.quantity,
+                  0
+                )
                 .toFixed(2)}
             </PriceSpan>
           </TotalPriceInfo>

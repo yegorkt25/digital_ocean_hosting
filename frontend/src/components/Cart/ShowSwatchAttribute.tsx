@@ -33,7 +33,20 @@ export default class ShowSwatchAttribute extends React.Component<IShowSwatchAttr
           const isAttributeItemSelected =
             attributeItem.id === selectedAttributeItemId;
 
-          const testId = !isAttributeItemSelected
+          const testIdDisplayValue = !isAttributeItemSelected
+            ? [
+                "product-attribute",
+                ...attribute.name.toLowerCase().split(" "),
+                ...attributeItem.displayValue.split(" "),
+              ].join("-")
+            : [
+                "product-attribute",
+                ...attribute.name.toLowerCase().split(" "),
+                ...attributeItem.displayValue.split(" "),
+                "selected",
+              ].join("-");
+
+          const testIdValue = !isAttributeItemSelected
             ? [
                 "product-attribute",
                 ...attribute.name.toLowerCase().split(" "),
@@ -48,21 +61,25 @@ export default class ShowSwatchAttribute extends React.Component<IShowSwatchAttr
 
           if (isAttributeItemSelected) {
             return (
-              <ActiveColorContainer
-                key={attributeItem.id}
-                style={{ background: attributeItem.value }}
-                className="swatchAttribute"
-                data-testid={testId}
-              />
+              <div data-testid={testIdValue}>
+                <ActiveColorContainer
+                  key={attributeItem.id}
+                  style={{ background: attributeItem.value }}
+                  className="swatchAttribute"
+                  data-testid={testIdDisplayValue}
+                />
+              </div>
             );
           } else {
             return (
-              <ColorContainer
-                key={attributeItem.id}
-                style={{ background: attributeItem.value }}
-                className="swatchAttribute"
-                data-testid={testId}
-              />
+              <div data-testid={testIdValue}>
+                <ColorContainer
+                  key={attributeItem.id}
+                  style={{ background: attributeItem.value }}
+                  className="swatchAttribute"
+                  data-testid={testIdDisplayValue}
+                />
+              </div>
             );
           }
         })}
