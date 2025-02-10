@@ -7,22 +7,21 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-22.04.4
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up SSH key
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DO_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.DO_SERVER_IP }} >> ~/.ssh/known_hosts
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add - <<< "${{ secrets.DO_SSH_PRIVATE_KEY }}"
 
       - name: Deploy to DigitalOcean
         run: |
-          ssh root@${{ secrets.DO_SERVER_IP }}
+          ssh -T root@${{ secrets.DO_SERVER_IP }}
           cd app
 
           git pull origin main
