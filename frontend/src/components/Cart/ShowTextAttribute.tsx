@@ -36,12 +36,12 @@ export default class ShowTextAttribute extends React.Component<IShowTextAttribut
             ? [
                 "product-attribute",
                 ...attribute.name.toLowerCase().split(" "),
-                ...attributeItem.value.toLowerCase().split(" "),
+                ...attributeItem.value.split(" "),
               ].join("-")
             : [
                 "product-attribute",
                 ...attribute.name.toLowerCase().split(" "),
-                ...attributeItem.value.toLowerCase().split(" "),
+                ...attributeItem.value.split(" "),
                 "selected",
               ].join("-");
 

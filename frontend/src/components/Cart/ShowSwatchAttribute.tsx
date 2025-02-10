@@ -36,12 +36,12 @@ export default class ShowSwatchAttribute extends React.Component<IShowSwatchAttr
           const testId = !isAttributeItemSelected
             ? [
                 "product-attribute",
-                ...attribute.name.toLowerCase().split(" "),
+                ...attribute.name.split(" "),
                 ...attributeItem.value.toLowerCase().split(" "),
               ].join("-")
             : [
                 "product-attribute",
-                ...attribute.name.toLowerCase().split(" "),
+                ...attribute.name.split(" "),
                 ...attributeItem.value.toLowerCase().split(" "),
                 "selected",
               ].join("-");
