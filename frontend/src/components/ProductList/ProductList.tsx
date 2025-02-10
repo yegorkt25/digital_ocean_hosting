@@ -63,23 +63,23 @@ export class ProductList extends React.Component<IProductListProps> {
         </MainHeader>
         <ProductCardsContainer>
           {products.map((product) => {
-              return (
-                <NavLink
-                  to={`/products/${product.id}`}
-                  key={product.id}
-                  className="productCardLink"
-		  data-testid={[
+            return (
+              <NavLink
+                to={`/products/${product.id}`}
+                key={product.id}
+                className="productCardLink"
+                data-testid={[
                   "product",
                   ...product.name.toLowerCase().split(" "),
                 ].join("-")}
-                >
-                  <ProductCard
-                    product={product}
-                    addProductToCart={addProductToCart}
-                    switchCartOverlay={switchCartOverlay}
-                  />
-                </NavLink>
-              );
+              >
+                <ProductCard
+                  product={product}
+                  addProductToCart={addProductToCart}
+                  switchCartOverlay={switchCartOverlay}
+                />
+              </NavLink>
+            );
           })}
         </ProductCardsContainer>
       </ProductListContainer>

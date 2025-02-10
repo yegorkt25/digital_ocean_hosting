@@ -19,9 +19,10 @@ export default class ShowSwatchAttribute extends React.Component<IShowSwatchAttr
   public render() {
     const { attribute, selectedAttributeItemId } = this.props;
 
-    const testId = `cart-item-attribute-${attribute.name
-      .toLowerCase()
-      .replace(" ", "-")}`;
+    const testId = [
+      "product attribute ",
+      ...attribute.name.toLowerCase().split(" "),
+    ].join("-");
 
     return (
       <ColorSelectorContainer
