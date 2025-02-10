@@ -19,7 +19,7 @@ export default class ShowTextAttribute extends React.Component<IShowTextAttribut
   public render() {
     const { attribute, selectedAttributeItemId } = this.props;
     const testId = [
-      "product-attribute-",
+      "product-attribute",
       ...attribute.name.toLowerCase().split(" "),
     ].join("-");
 
