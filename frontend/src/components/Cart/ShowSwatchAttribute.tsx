@@ -61,25 +61,27 @@ export default class ShowSwatchAttribute extends React.Component<IShowSwatchAttr
 
           if (isAttributeItemSelected) {
             return (
-              <div data-testid={testIdValue}>
+              <>
+                <div data-testid={testIdValue} className="hidden-test-id"></div>
                 <ActiveColorContainer
                   key={attributeItem.id}
                   style={{ background: attributeItem.value }}
                   className="swatchAttribute"
                   data-testid={testIdDisplayValue}
                 />
-              </div>
+              </>
             );
           } else {
             return (
-              <div data-testid={testIdValue}>
+              <>
+                <div data-testid={testIdValue} className="hidden-test-id"></div>
                 <ColorContainer
                   key={attributeItem.id}
                   style={{ background: attributeItem.value }}
                   className="swatchAttribute"
                   data-testid={testIdDisplayValue}
                 />
-              </div>
+              </>
             );
           }
         })}

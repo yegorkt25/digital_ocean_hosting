@@ -119,3 +119,12 @@ style={{
 .productQuantity {
   text-align: center !important;
 }
+
+.hidden-test-id {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
