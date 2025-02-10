@@ -1,12 +1,7 @@
 * {
   box-sizing: border-box;
 }
-/* style={{
-  cursor: isCartEmpty ? "default" : "pointer",
-  backgroundColor: isCartEmpty
-    ? "hsl(135.54, 10%, 58.82%)"
-    : undefined,
-}} */
+
 .disabledOrderButton {
   cursor: default !important;
   background-color: hsl(137, 3%, 60%) !important;
@@ -16,14 +11,10 @@
   cursor: pointer !important;
 }
 
-/*style={{ color: "#1D1F22", textDecoration: "none" }}*/
-
 .navLink {
   color: #1d1f22 !important;
   text-decoration: none !important;
 }
-
-/*style={{ width: "24px", height: "24px", padding: "0px" }}*/
 
 .countControls {
   width: 24px !important;
@@ -31,24 +22,10 @@
   padding: 0px !important;
 }
 
-/*style={{ gap: "6px", margin: "10px 0px" }}*/
-
 .textAttributeContainer {
   gap: 6px !important;
   margin: 10px 0px !important;
 }
-
-/*
-style={{
-                  height: "24px",
-                  width: "auto",
-                  fontSize: "14px",
-                  cursor: "default",
-                  color: "#ffffff",
-                  backgroundColor: "#1d1f22",
-                  padding: "6px 11px",
-                }}
-*/
 
 .selectedTextAttr {
   height: 24px !important;
@@ -62,18 +39,6 @@ style={{
   padding: 6px 11px !important;
 }
 
-/*
-style={{
-                  height: "24px",
-                  width: "auto",
-                  fontSize: "14px",
-                  cursor: "default",
-                  color: "#1d1f22",
-                  border: "1px solid #1d1f22",
-                  padding: "3px 8px",
-                }}
-*/
-
 .textAttribute {
   height: 24px !important;
   width: auto !important;
@@ -84,31 +49,16 @@ style={{
   padding: 3px 8px !important;
 }
 
-/*style={{ gap: "6px", margin: "10px 0px" }}*/
-
 .swatchAttributeContainer {
   gap: 6px !important;
   margin: 10px 0px !important;
 }
-
-/*style={{
-                  background: attributeItem.value,
-                  width: "16px",
-                  height: "16px",
-                  cursor: "default",
-                }}*/
 
 .swatchAttribute {
   width: 16px !important;
   height: 16px !important;
   cursor: default !important;
 }
-
-/*style={{
-                    textDecoration: "none",
-                    color: "#1D1F22",
-                    zIndex: "1",
-                  }}*/
 
 .productCardLink {
   text-decoration: none !important;
@@ -122,9 +72,9 @@ style={{
 
 .hidden-test-id {
   position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  opacity: 0.01;
   pointer-events: none;
-  opacity: 0;
+  overflow: hidden;
 }
