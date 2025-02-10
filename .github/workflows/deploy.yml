@@ -22,7 +22,8 @@ jobs:
       - name: Deploy to DigitalOcean
         run: |
           ssh root@${{ secrets.DO_SERVER_IP }} << 'EOF'
-          git pull origin main
+          git fetch origin main
+          git reset --hard origin/main
 
           docker compose down
           docker compose build
