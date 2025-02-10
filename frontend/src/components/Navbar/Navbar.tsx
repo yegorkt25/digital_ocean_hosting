@@ -38,14 +38,14 @@ export default class Navbar extends React.Component<INavProps> {
       <NavContainer>
         <NavCategoriesContainer>
           {Object.entries(categories).map(([key, value]) => {
-	  const isSelected = selectedCategory?.name === value.name;
+            const isSelected = selectedCategory?.name === value.name;
 
             return (
               <NavLink
                 to={"/" + value.name}
                 key={key}
                 className="navLink"
-                data-test-id={
+                data-testid={
                   isSelected ? "active-category-link" : "category-link"
                 }
               >
@@ -56,7 +56,7 @@ export default class Navbar extends React.Component<INavProps> {
                 />
               </NavLink>
             );
-	  })}
+          })}
         </NavCategoriesContainer>
 
         <Logo src={logo} alt="logo" />
