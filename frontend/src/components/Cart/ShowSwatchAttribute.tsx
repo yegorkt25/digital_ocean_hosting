@@ -32,9 +32,17 @@ export default class ShowSwatchAttribute extends React.Component<IShowSwatchAttr
         {attribute.attributeItems.map((attributeItem) => {
           const isAttributeItemSelected =
             attributeItem.id === selectedAttributeItemId;
-          const testId = `cart-item-attribute-${attributeItem.displayValue.toLowerCase()}${
-            isAttributeItemSelected ? "-selected" : ""
-          }`;
+
+          const testId = !isAttributeItemSelected
+            ? [
+                "product-attribute-",
+                ...attributeItem.value.toLowerCase().split(" "),
+              ].join("-")
+            : [
+                "product-attribute-",
+                ...attributeItem.value.toLowerCase().split(" "),
+                "-selected",
+              ].join("-");
 
           if (isAttributeItemSelected) {
             return (

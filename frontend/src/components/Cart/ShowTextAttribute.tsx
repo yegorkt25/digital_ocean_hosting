@@ -19,7 +19,7 @@ export default class ShowTextAttribute extends React.Component<IShowTextAttribut
   public render() {
     const { attribute, selectedAttributeItemId } = this.props;
     const testId = [
-      "product attribute ",
+      "product-attribute-",
       ...attribute.name.toLowerCase().split(" "),
     ].join("-");
 
@@ -31,9 +31,17 @@ export default class ShowTextAttribute extends React.Component<IShowTextAttribut
         {attribute.attributeItems.map((attributeItem) => {
           const isAttributeItemSelected =
             attributeItem.id === selectedAttributeItemId;
-          const testId = `cart-item-attribute-${attributeItem.displayValue.toLowerCase()}${
-            isAttributeItemSelected ? "-selected" : ""
-          }`;
+
+          const testId = !isAttributeItemSelected
+            ? [
+                "product-attribute-",
+                ...attributeItem.value.toLowerCase().split(" "),
+              ].join("-")
+            : [
+                "product-attribute-",
+                ...attributeItem.value.toLowerCase().split(" "),
+                "-selected",
+              ].join("-");
 
           if (isAttributeItemSelected) {
             return (

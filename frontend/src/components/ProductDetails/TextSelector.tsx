@@ -21,7 +21,7 @@ export default class TextSelector extends React.Component<ITextSelectorProps> {
     const { attribute, setSelectedAttribute, selectedAttributeItems } =
       this.props;
     const testId = [
-      "product attribute ",
+      "product-attribute-",
       ...attribute.name.toLowerCase().split(" "),
     ].join("-");
 
