@@ -32,9 +32,7 @@ export default class ProductCard extends React.Component<IProductCardProps> {
     const { product, addProductToCart, switchCartOverlay } = this.props;
 
     return (
-      <StyledProductCard
-        data-testid={"product-" + product.name.toLowerCase().replace(" ", "-")}
-      >
+      <StyledProductCard>
         <ImageContainer>
           {product.isInStock ? (
             <ProductCardImage

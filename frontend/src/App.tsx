@@ -200,6 +200,7 @@ class App extends Component<{}, AppState> {
           />
           {isCartOpen && (
             <Cart
+	      switchCartOverlay={this.switchCartOverlay}
               selectedProducts={selectedProducts}
               addProductToCart={this.addProductToCart}
               removeProductFromCart={this.removeProductFromCart}

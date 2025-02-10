@@ -28,13 +28,13 @@ export default class NavCategory extends React.Component<
   public render() {
     if (this.props.isSelected) {
       return (
-        <ActiveButton data-testid="active-category-link">
+        <ActiveButton>
           {this.props.category.name.toUpperCase()}
         </ActiveButton>
       );
     }
     return (
-      <NavButton onClick={this.setCategory} data-testid="category-link">
+      <NavButton onClick={this.setCategory}>
         {this.props.category.name.toUpperCase()}
       </NavButton>
     );

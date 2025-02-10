@@ -63,12 +63,15 @@ export class ProductList extends React.Component<IProductListProps> {
         </MainHeader>
         <ProductCardsContainer>
           {products.map((product) => {
-            if (product.isInStock) {
               return (
                 <NavLink
                   to={`/products/${product.id}`}
                   key={product.id}
                   className="productCardLink"
+		  data-testid={[
+                  "product",
+                  ...product.name.toLowerCase().split(" "),
+                ].join("-")}
                 >
                   <ProductCard
                     product={product}
@@ -77,15 +80,6 @@ export class ProductList extends React.Component<IProductListProps> {
                   />
                 </NavLink>
               );
-            }
-            return (
-              <ProductCard
-                product={product}
-                key={product.id}
-                addProductToCart={addProductToCart}
-                switchCartOverlay={switchCartOverlay}
-              />
-            );
           })}
         </ProductCardsContainer>
       </ProductListContainer>

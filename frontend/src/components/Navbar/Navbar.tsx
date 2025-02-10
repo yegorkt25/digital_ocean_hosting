@@ -37,15 +37,26 @@ export default class Navbar extends React.Component<INavProps> {
     return (
       <NavContainer>
         <NavCategoriesContainer>
-          {Object.entries(categories).map(([key, value]) => (
-            <NavLink to={"/" + value.name} key={key} className="navLink">
-              <NavCategory
-                setSelectedCategory={setSelectedCategory}
-                category={value}
-                isSelected={selectedCategory?.name === value.name}
-              />
-            </NavLink>
-          ))}
+          {Object.entries(categories).map(([key, value]) => {
+	  const isSelected = selectedCategory?.name === value.name;
+
+            return (
+              <NavLink
+                to={"/" + value.name}
+                key={key}
+                className="navLink"
+                data-test-id={
+                  isSelected ? "active-category-link" : "category-link"
+                }
+              >
+                <NavCategory
+                  setSelectedCategory={setSelectedCategory}
+                  category={value}
+                  isSelected={isSelected}
+                />
+              </NavLink>
+            );
+	  })}
         </NavCategoriesContainer>
 
         <Logo src={logo} alt="logo" />
@@ -54,7 +65,7 @@ export default class Navbar extends React.Component<INavProps> {
           src={cart}
           alt="cart"
           onClick={() => switchCartOverlay()}
-          data-testid="cart-btn"
+          data-testid="cart-overlay"
         />
         {selectedProducts.length > 0 && (
           <CartAmount>
