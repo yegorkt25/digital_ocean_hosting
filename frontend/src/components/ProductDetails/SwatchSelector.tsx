@@ -21,7 +21,7 @@ export default class SwatchSelector extends React.Component<IColorSelectorProps>
     const { attribute, setSelectedAttribute, selectedAttributeItems } =
       this.props;
     const testId = [
-      "product-attribute-",
+      "product-attribute",
       ...attribute.name.toLowerCase().split(" "),
     ].join("-");
 

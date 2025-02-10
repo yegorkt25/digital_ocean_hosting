@@ -34,13 +34,13 @@ export default class ShowTextAttribute extends React.Component<IShowTextAttribut
 
           const testId = !isAttributeItemSelected
             ? [
-                "product-attribute-",
+                "product-attribute",
                 ...attributeItem.value.toLowerCase().split(" "),
               ].join("-")
             : [
-                "product-attribute-",
+                "product-attribute",
                 ...attributeItem.value.toLowerCase().split(" "),
-                "-selected",
+                "selected",
               ].join("-");
 
           if (isAttributeItemSelected) {
