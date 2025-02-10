@@ -65,7 +65,7 @@ export default class Navbar extends React.Component<INavProps> {
           src={cart}
           alt="cart"
           onClick={() => switchCartOverlay()}
-          data-testid="cart-overlay"
+          data-testid="cart-btn"
         />
         {selectedProducts.length > 0 && (
           <CartAmount>
