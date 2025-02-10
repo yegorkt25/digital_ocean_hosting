@@ -1,2 +1,1 @@
-and I dream broken dreams, I made them come true
-I make them for you
+even through the darkeST days, this fire burns, always
