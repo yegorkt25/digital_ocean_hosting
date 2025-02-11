@@ -4,10 +4,6 @@ namespace App\Controller;
 
 use App\Resolvers\SchemaResolver;
 use GraphQL\GraphQL as GraphQLBase;
-use GraphQL\Type\Definition\ObjectType;
-use GraphQL\Type\Definition\Type;
-use GraphQL\Type\Schema;
-use GraphQL\Type\SchemaConfig;
 use RuntimeException;
 use Throwable;
 

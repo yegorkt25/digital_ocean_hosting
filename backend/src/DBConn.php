@@ -20,7 +20,7 @@ class DBConn
             $dotenv->load();
 
             $config = ORMSetup::createAttributeMetadataConfiguration(
-                paths: [__DIR__], // Correct path to the Entities folder
+                paths: [__DIR__],
                 isDevMode: true,
             );
 
