@@ -57,9 +57,9 @@ export class ProductDetails extends React.Component<
       const { product } = data;
       const selectedAttributeItems: SelectedAttributeItems = {};
 
-      product.attributes.forEach((attribute) => {
-        selectedAttributeItems[attribute.id] = attribute.attributeItems[0].id;
-      });
+      // product.attributes.forEach((attribute) => {
+      //   selectedAttributeItems[attribute.id] = attribute.attributeItems[0].id;
+      // });
 
       this.props.setSelectedCategory(product.category, false);
 

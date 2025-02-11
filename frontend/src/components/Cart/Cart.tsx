@@ -88,7 +88,6 @@ export default class Cart extends React.Component<ICartProps> {
             className={
               isCartEmpty ? "disabledOrderButton" : "enabledOrderButton"
             }
-            data-testid="cart-btn"
             onClick={() => {
               addOrder(selectedProducts);
               setCartEmpty();

@@ -68,17 +68,29 @@ export default class Info extends React.Component<IInfoProps> {
 
         <SubTitle>PRICE:</SubTitle>
         <PriceCont>${selectedProduct.prices[0].price.toFixed(2)}</PriceCont>
-        {selectedProduct.isInStock ? (
-          <AddToCartButton
-            onClick={() => {
+
+        <AddToCartButton
+          onClick={() => {
+            if (
+              selectedProduct.isInStock &&
+              Object.keys(selectedProduct.selectedAttributesItems).length ===
+                selectedProduct.attributes.length
+            ) {
               addProductToCart(selectedProduct);
               switchCartOverlay();
-            }}
-            data-testid="add-to-cart"
-          >
-            ADD TO CART
-          </AddToCartButton>
-        ) : undefined}
+            }
+          }}
+          data-testid="add-to-cart"
+          className={
+            !selectedProduct.isInStock ||
+            Object.keys(selectedProduct.selectedAttributesItems).length <
+              selectedProduct.attributes.length
+              ? "disabledOrderButton"
+              : ""
+          }
+        >
+          ADD TO CART
+        </AddToCartButton>
 
         <Description data-testid="product-description">
           {description}
