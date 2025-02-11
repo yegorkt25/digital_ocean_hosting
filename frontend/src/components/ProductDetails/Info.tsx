@@ -88,12 +88,10 @@ export default class Info extends React.Component<IInfoProps> {
               ? "disabledOrderButton"
               : ""
           }
-          aria-disabled={
+          disabled={
             !selectedProduct.isInStock ||
             Object.keys(selectedProduct.selectedAttributesItems).length <
               selectedProduct.attributes.length
-              ? "true"
-              : "false"
           }
         >
           ADD TO CART

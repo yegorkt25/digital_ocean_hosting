@@ -118,7 +118,8 @@ export const PriceCont = styled.div`
   font-weight: 700;
 `;
 
-export const AddToCartButton = styled.div`
+export const AddToCartButton = styled.button`
+  all: unset;
   width: 100%;
   height: 52px;
   display: flex;
