@@ -28,11 +28,28 @@ export default class SwatchSelector extends React.Component<IColorSelectorProps>
     return (
       <ColorSelectorContainer data-testid={testId}>
         {attribute.attributeItems.map((attributeItem) => {
-          if (selectedAttributeItems[attribute.id] === attributeItem.id) {
+          const isAttributeItemSelected =
+            selectedAttributeItems[attribute.id] === attributeItem.id;
+
+          const testIdDisplayValue = !isAttributeItemSelected
+            ? [
+                "product-attribute",
+                ...attribute.name.toLowerCase().split(" "),
+                ...attributeItem.displayValue.split(" "),
+              ].join("-")
+            : [
+                "product-attribute",
+                ...attribute.name.toLowerCase().split(" "),
+                ...attributeItem.displayValue.split(" "),
+                "selected",
+              ].join("-");
+
+          if (isAttributeItemSelected) {
             return (
               <ActiveColorContainer
                 key={attributeItem.id}
                 style={{ background: attributeItem.value }}
+                data-testid={testIdDisplayValue}
               />
             );
           } else {
@@ -43,6 +60,7 @@ export default class SwatchSelector extends React.Component<IColorSelectorProps>
                 onClick={() =>
                   setSelectedAttribute(attribute.id, attributeItem.id)
                 }
+                data-testid={testIdDisplayValue}
               />
             );
           }

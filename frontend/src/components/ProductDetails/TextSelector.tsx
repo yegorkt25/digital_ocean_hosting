@@ -28,9 +28,25 @@ export default class TextSelector extends React.Component<ITextSelectorProps> {
     return (
       <SizeSelectorContainer data-testid={testId}>
         {attribute.attributeItems.map((attributeItem) => {
-          if (selectedAttributeItems[attribute.id] === attributeItem.id) {
+          const isAttributeItemSelected =
+            selectedAttributeItems[attribute.id] === attributeItem.id;
+
+          const testId = !isAttributeItemSelected
+            ? [
+                "product-attribute",
+                ...attribute.name.toLowerCase().split(" "),
+                ...attributeItem.value.split(" "),
+              ].join("-")
+            : [
+                "product-attribute",
+                ...attribute.name.toLowerCase().split(" "),
+                ...attributeItem.value.split(" "),
+                "selected",
+              ].join("-");
+
+          if (isAttributeItemSelected) {
             return (
-              <ActiveSizeButton key={attributeItem.id}>
+              <ActiveSizeButton key={attributeItem.id} data-testid={testId}>
                 {attributeItem.value}
               </ActiveSizeButton>
             );
@@ -41,6 +57,7 @@ export default class TextSelector extends React.Component<ITextSelectorProps> {
                   setSelectedAttribute(attribute.id, attributeItem.id)
                 }
                 key={attributeItem.id}
+                data-testid={testId}
               >
                 {attributeItem.value}
               </SizeButton>

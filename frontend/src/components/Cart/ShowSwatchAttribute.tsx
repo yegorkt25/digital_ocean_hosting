@@ -46,42 +46,23 @@ export default class ShowSwatchAttribute extends React.Component<IShowSwatchAttr
                 "selected",
               ].join("-");
 
-          const testIdValue = !isAttributeItemSelected
-            ? [
-                "product-attribute",
-                ...attribute.name.toLowerCase().split(" "),
-                ...attributeItem.value.split(" "),
-              ].join("-")
-            : [
-                "product-attribute",
-                ...attribute.name.toLowerCase().split(" "),
-                ...attributeItem.value.split(" "),
-                "selected",
-              ].join("-");
-
           if (isAttributeItemSelected) {
             return (
-              <>
-                <div data-testid={testIdValue} className="hidden-test-id"></div>
-                <ActiveColorContainer
-                  key={attributeItem.id}
-                  style={{ background: attributeItem.value }}
-                  className="swatchAttribute"
-                  data-testid={testIdDisplayValue}
-                />
-              </>
+              <ActiveColorContainer
+                key={attributeItem.id}
+                style={{ background: attributeItem.value }}
+                className="swatchAttribute"
+                data-testid={testIdDisplayValue}
+              />
             );
           } else {
             return (
-              <>
-                <div data-testid={testIdValue} className="hidden-test-id"></div>
-                <ColorContainer
-                  key={attributeItem.id}
-                  style={{ background: attributeItem.value }}
-                  className="swatchAttribute"
-                  data-testid={testIdDisplayValue}
-                />
-              </>
+              <ColorContainer
+                key={attributeItem.id}
+                style={{ background: attributeItem.value }}
+                className="swatchAttribute"
+                data-testid={testIdDisplayValue}
+              />
             );
           }
         })}
